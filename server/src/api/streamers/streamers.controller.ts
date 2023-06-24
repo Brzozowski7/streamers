@@ -7,16 +7,16 @@ import {
   Put,
   UploadedFile,
   UseInterceptors,
-} from "@nestjs/common";
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
-import { Streamer } from "libs/lib/src/mongo/entities/streamer";
-import { CreateStreamerDTO } from "libs/lib/src/types/streamers/create-streamer.dto";
-import { StreamersService } from "./streamers.service";
-import { StreamerIdParam } from "libs/lib/src/types/streamers/streamer-id-param";
-import { StreamerVoteDTO } from "libs/lib/src/types/streamers/streamer-vote.dto";
-import { FileFieldsInterceptor } from "@nestjs/platform-express";
+} from '@nestjs/common';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Streamer } from 'libs/lib/src/mongo/entities/streamer';
+import { CreateStreamerDTO } from 'libs/lib/src/types/streamers/create-streamer.dto';
+import { StreamersService } from './streamers.service';
+import { StreamerIdParam } from 'libs/lib/src/types/streamers/streamer-id-param';
+import { StreamerVoteDTO } from 'libs/lib/src/types/streamers/streamer-vote.dto';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
-@ApiTags("/streamers")
+@ApiTags('/streamers')
 @Controller()
 export class StreamersController {
   constructor(private readonly streamersService: StreamersService) {}
@@ -40,7 +40,7 @@ export class StreamersController {
   @ApiOkResponse({
     type: Streamer,
   })
-  @Get("/:streamerId")
+  @Get('/:streamerId')
   async getStreamer(@Param() { streamerId }: StreamerIdParam) {
     return await this.streamersService.getStreamer(streamerId);
   }
@@ -48,10 +48,10 @@ export class StreamersController {
   @ApiOkResponse({
     type: Streamer,
   })
-  @Put("/:streamerId/vote")
+  @Put('/:streamerId/vote')
   async vote(
     @Body() payload: StreamerVoteDTO,
-    @Param() { streamerId }: StreamerIdParam
+    @Param() { streamerId }: StreamerIdParam,
   ) {
     return await this.streamersService.vote(payload, streamerId);
   }
@@ -59,8 +59,8 @@ export class StreamersController {
   @ApiOkResponse({
     type: Streamer,
   })
-  @Post("/:streamerId/photo")
-  @UseInterceptors(FileFieldsInterceptor([{ name: "photo" }]))
+  @Post('/:streamerId/photo')
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'file' }]))
   async addStreamerPhoto(
     @UploadedFile()
     {
@@ -68,7 +68,7 @@ export class StreamersController {
     }: {
       file: Express.Multer.File;
     },
-    @Param() { streamerId }: StreamerIdParam
+    @Param() { streamerId }: StreamerIdParam,
   ) {
     return await this.streamersService.addStreamerPhoto(file, streamerId);
   }
