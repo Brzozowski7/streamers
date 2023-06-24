@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  streamers_mongo:
+    image: mongo
+    restart: always
+    container_name: "streamers_mongo"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_LOCAL_USER}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_LOCAL_PASSWORD}"
+    ports:
+      - 27017:27017
+
+  streamers_mongo-ui:
+    depends_on: 
+      - streamers_mongo
+    image: mongo-express
+    restart: always
+    ports:
+      - 8668:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "${MONGO_LOCAL_UI_USER}"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "${MONGO_LOCAL_UI_PASSWORD}"
+      ME_CONFIG_MONGODB_URL: "mongodb://${MONGO_LOCAL_USER}:${MONGO_LOCAL_PASSWORD}@streamers_mongo:27017/"
+
+
