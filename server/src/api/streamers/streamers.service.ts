@@ -65,6 +65,10 @@ export class StreamersService {
       `streamers/${streamerId}`,
     );
 
+    foundStreamer.photo = streamerPhoto;
+
+    await foundStreamer.save();
+
     return streamerPhoto;
   }
 }
