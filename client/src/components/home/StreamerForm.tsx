@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { Button, Input, MenuItem, TextField } from '@mui/material';
+import { Button, MenuItem, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { useFormik } from 'formik';
 import { useCreateStreamer } from '../../services/networking/streamers/useCreateStreamer';

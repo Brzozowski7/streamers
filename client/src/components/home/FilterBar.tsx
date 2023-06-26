@@ -26,6 +26,7 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
     setQueryParams((prev) => {
       return {
         ...prev,
+        page: 1,
         streamer: searchedStreamer,
       };
     });
@@ -36,6 +37,7 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
     setQueryParams((prev) => {
       return {
         ...prev,
+        page: 1,
         platforms: chosenPlatforms,
       };
     });
@@ -46,6 +48,7 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
     setQueryParams((prev) => {
       return {
         ...prev,
+        page: 1,
         limit: limit,
       };
     });
