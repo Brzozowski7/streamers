@@ -80,6 +80,7 @@ export class StreamersService {
   }
 
   async addStreamerPhoto(photoData: Express.Multer.File, streamerId: string) {
+    console.log(photoData);
     const foundStreamer = await this.streamerRepository.findById(streamerId);
 
     if (!foundStreamer) throw new NotFoundException('Streamer not found');

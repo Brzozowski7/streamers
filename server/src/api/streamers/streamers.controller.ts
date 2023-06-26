@@ -15,9 +15,13 @@ import { CreateStreamerDTO } from 'libs/lib/src/types/streamers/create-streamer.
 import { StreamersService } from './streamers.service';
 import { StreamerIdParam } from 'libs/lib/src/types/streamers/streamer-id-param';
 import { StreamerVoteDTO } from 'libs/lib/src/types/streamers/streamer-vote.dto';
-import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import {
+  FileFieldsInterceptor,
+  FileInterceptor,
+} from '@nestjs/platform-express';
 import { SearchStreamersDTO } from 'libs/lib/src/types/streamers/search-streamers.dto';
 import { ApiPaginatedResponse } from 'libs/lib/src/decorators/ApiPaginatedResponse.decorator';
+import { Photo } from 'libs/lib/src/mongo/entities/photo';
 
 @ApiTags('/streamers')
 @Controller()
@@ -28,7 +32,7 @@ export class StreamersController {
     type: Streamer,
   })
   @Post()
-  async createProduct(@Body() payload: CreateStreamerDTO) {
+  async createStreamer(@Body() payload: CreateStreamerDTO) {
     return await this.streamersService.createStreamer(payload);
   }
 
@@ -58,17 +62,12 @@ export class StreamersController {
   }
 
   @ApiOkResponse({
-    type: Streamer,
+    type: Photo,
   })
   @Post('/:streamerId/photo')
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'file' }]))
+  @UseInterceptors(FileInterceptor('file'))
   async addStreamerPhoto(
-    @UploadedFile()
-    {
-      file,
-    }: {
-      file: Express.Multer.File;
-    },
+    @UploadedFile() file: Express.Multer.File,
     @Param() { streamerId }: StreamerIdParam,
   ) {
     return await this.streamersService.addStreamerPhoto(file, streamerId);

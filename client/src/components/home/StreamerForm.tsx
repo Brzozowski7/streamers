@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { MenuItem, TextField } from '@mui/material';
+import { Button, Input, MenuItem, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { useFormik } from 'formik';
 import { useCreateStreamer } from '../../services/networking/streamers/useCreateStreamer';
@@ -10,23 +10,44 @@ import {
   streamerFormValidationSchema,
 } from '../../constants/validation/streamer-form.schema';
 import { StreamingPlatform } from '../../services/networking/streamers/types';
+import { useState } from 'react';
+import { useAddStreamerPhoto } from '../../services/networking/streamers/useAddStreamerPhoto';
 
 interface StreamerFormProps {
   onCreateSuccess?: () => void;
 }
 
 function StreamerForm({ onCreateSuccess }: StreamerFormProps) {
+  const [selectedFile, setSelectedFile] = useState<File>();
   const queryClient = useQueryClient();
 
   const { mutate: createStreamer, isLoading: isCreatingStreamer } =
     useCreateStreamer({
-      onSuccess: () => {
+      onSuccess: (data) => {
+        if (selectedFile) {
+          const formData = new FormData();
+          formData.append('file', selectedFile);
+          addStreamerPhoto({ streamerId: data._id, formData });
+          return;
+        }
         onCreateSuccess?.();
         queryClient.invalidateQueries([apiRoutes.streamers]);
-        toast.success('Stworzono nowego streamera');
+        toast.success('New streamer created');
       },
       onError: (err) => {
         console.log(err);
+        toast.error(err.response.data.message);
+      },
+    });
+
+  const { mutate: addStreamerPhoto, isLoading: isAddingPhoto } =
+    useAddStreamerPhoto({
+      onSuccess: () => {
+        onCreateSuccess?.();
+        queryClient.invalidateQueries([apiRoutes.streamers]);
+        toast.success('New streamer created');
+      },
+      onError: (err) => {
         toast.error(err.response.data.message);
       },
     });
@@ -40,6 +61,10 @@ function StreamerForm({ onCreateSuccess }: StreamerFormProps) {
     validateOnChange: false,
     validateOnBlur: true,
   });
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
   return (
     <form onSubmit={streamerForm.handleSubmit}>
@@ -79,12 +104,21 @@ function StreamerForm({ onCreateSuccess }: StreamerFormProps) {
         multiline
         error={!!streamerForm.errors.description}
       />
+      <Button component="label">
+        Avatar
+        <input
+          type="file"
+          style={{ display: 'none' }}
+          accept="image/*"
+          onChange={handleFileChange}
+        />
+      </Button>
       <LoadingButton
         variant="contained"
         color="primary"
         fullWidth
         type="submit"
-        loading={isCreatingStreamer}
+        loading={isCreatingStreamer || isAddingPhoto}
         sx={{ mt: 2 }}
       >
         Create
