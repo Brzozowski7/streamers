@@ -5,6 +5,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -15,6 +16,8 @@ import { StreamersService } from './streamers.service';
 import { StreamerIdParam } from 'libs/lib/src/types/streamers/streamer-id-param';
 import { StreamerVoteDTO } from 'libs/lib/src/types/streamers/streamer-vote.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { SearchStreamersDTO } from 'libs/lib/src/types/streamers/search-streamers.dto';
+import { ApiPaginatedResponse } from 'libs/lib/src/decorators/ApiPaginatedResponse.decorator';
 
 @ApiTags('/streamers')
 @Controller()
@@ -29,12 +32,10 @@ export class StreamersController {
     return await this.streamersService.createStreamer(payload);
   }
 
-  @ApiOkResponse({
-    type: [Streamer],
-  })
+  @ApiPaginatedResponse(Streamer)
   @Get()
-  async getStreamers() {
-    return await this.streamersService.getStreamers();
+  async getStreamers(@Query() query: SearchStreamersDTO) {
+    return await this.streamersService.getStreamers(query);
   }
 
   @ApiOkResponse({

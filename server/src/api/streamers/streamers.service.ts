@@ -1,10 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { StreamerRepository } from 'libs/lib/src/mongo/entities/streamer';
 import { CreateStreamerDTO } from 'libs/lib/src/types/streamers/create-streamer.dto';
 import { StreamerVoteDTO } from 'libs/lib/src/types/streamers/streamer-vote.dto';
 import { VoteType } from 'libs/lib/src/types/streamers/vote-type';
 import { SocketGateway } from '../socket/socket.gateway';
 import { PhotoService } from 'libs/lib/src/photo/photo.service';
+import { SearchStreamersDTO } from 'libs/lib/src/types/streamers/search-streamers.dto';
+import { StreamersQuery } from 'libs/lib/src/types/streamers/streamers-query';
 
 @Injectable()
 export class StreamersService {
@@ -15,13 +21,34 @@ export class StreamersService {
   ) {}
 
   async createStreamer(payload: CreateStreamerDTO) {
+    const foundStreamer = await this.streamerRepository.findOne({
+      name: payload.name,
+    });
+
+    if (foundStreamer) throw new BadRequestException('Streamer already exists');
+
     const createdStreamer = await this.streamerRepository.create(payload);
 
     return createdStreamer;
   }
 
-  async getStreamers() {
-    const streamers = await this.streamerRepository.find({});
+  async getStreamers(payload: SearchStreamersDTO) {
+    const query: StreamersQuery = {};
+
+    if (payload.streamer)
+      query.name = { $regex: payload.streamer, $options: 'i' };
+
+    if (payload.platforms) query.platform = { $in: payload.platforms };
+
+    const options = {
+      page: payload.page || 1,
+      limit: payload.limit || 10,
+    };
+
+    const streamers = await this.streamerRepository.model.paginate(
+      query,
+      options,
+    );
 
     return streamers;
   }
