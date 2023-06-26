@@ -56,16 +56,17 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
   }, [limit]);
 
   return (
-    <Stack display="flex" width="100%" spacing={2} alignItems="center">
-      <Box display="flex" alignItems="center">
+    <Stack width="100%" spacing={2} alignItems="center">
+      <Box display="flex" alignItems="center" gap={2}>
         <TextField
+          sx={{ width: 150 }}
           label="Streamer's name"
           value={searchedStreamer}
-          multiline
           size="small"
           onChange={(e) => setSearchedStreamer(e.target.value)}
         />
         <TextField
+          sx={{ width: 150 }}
           label="Platforms"
           value={chosenPlatforms}
           size="small"
@@ -88,6 +89,7 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
       </Box>
       <TextField
         value={limit}
+        sx={{ width: 75 }}
         label="Quantity"
         onChange={(e) => setLimit(parseInt(e.target.value))}
         select

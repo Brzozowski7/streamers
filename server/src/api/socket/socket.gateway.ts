@@ -1,19 +1,19 @@
-import { Logger, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Logger, UsePipes, ValidationPipe } from '@nestjs/common';
 import {
   OnGatewayConnection,
   OnGatewayDisconnect,
   WebSocketGateway,
   WebSocketServer,
-} from "@nestjs/websockets";
-import { SocketServerMessage } from "libs/lib/src/socket/messages";
-import { Server, Socket } from "socket.io";
+} from '@nestjs/websockets';
+import { SocketServerMessage } from 'libs/lib/src/socket/messages';
+import { Server, Socket } from 'socket.io';
 
 @UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
 @WebSocketGateway({
   cors: {
-    origin: "*",
+    origin: '*',
   },
-  path: "/api/socket.io",
+  path: '/api/socket.io',
 })
 export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   private logger = new Logger(SocketGateway.name);
@@ -36,5 +36,9 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   notifyVoteUpdate() {
     this.server.emit(SocketServerMessage.NewVote);
+  }
+
+  notifyNewStreamer() {
+    this.server.emit(SocketServerMessage.NewStreamer);
   }
 }

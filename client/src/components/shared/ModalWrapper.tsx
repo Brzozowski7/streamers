@@ -1,7 +1,6 @@
 import { Box, Modal } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
-import { theme } from '../../constants/theme';
-
+import theme from '../../constants/theme';
 
 interface ModalWrapperProps {
   isOpen: boolean;

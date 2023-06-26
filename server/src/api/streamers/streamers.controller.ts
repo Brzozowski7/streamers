@@ -15,10 +15,7 @@ import { CreateStreamerDTO } from 'libs/lib/src/types/streamers/create-streamer.
 import { StreamersService } from './streamers.service';
 import { StreamerIdParam } from 'libs/lib/src/types/streamers/streamer-id-param';
 import { StreamerVoteDTO } from 'libs/lib/src/types/streamers/streamer-vote.dto';
-import {
-  FileFieldsInterceptor,
-  FileInterceptor,
-} from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { SearchStreamersDTO } from 'libs/lib/src/types/streamers/search-streamers.dto';
 import { ApiPaginatedResponse } from 'libs/lib/src/decorators/ApiPaginatedResponse.decorator';
 import { Photo } from 'libs/lib/src/mongo/entities/photo';

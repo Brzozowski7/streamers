@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './pages/HomePage';
 import { Routes } from './services/networking';
 import StreamerPage from './pages/StreamerPage';
+import { ThemeProvider } from '@emotion/react';
+import theme from './constants/theme';
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -17,12 +19,14 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Router>
-          <Route path={Routes.home} element={<HomePage />} />
-          <Route path={`${Routes.home}/:id`} element={<StreamerPage />} />
-        </Router>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Router>
+            <Route path={Routes.home} element={<HomePage />} />
+            <Route path={`${Routes.home}/:id`} element={<StreamerPage />} />
+          </Router>
+        </BrowserRouter>
+      </ThemeProvider>
       <ToastContainer />
     </QueryClientProvider>
   );

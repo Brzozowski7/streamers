@@ -29,6 +29,8 @@ export class StreamersService {
 
     const createdStreamer = await this.streamerRepository.create(payload);
 
+    this.socketGateway.notifyNewStreamer();
+
     return createdStreamer;
   }
 

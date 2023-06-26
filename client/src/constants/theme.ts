@@ -1,9 +1,21 @@
 import { createTheme } from '@mui/material/styles';
+import colorPalette from './colorPallete';
 
-export const theme = createTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: '#6AB336',
+      main: colorPalette.purple,
+    },
+    secondary: {
+      main: colorPalette.white,
+    },
+    background: {
+      default: colorPalette.darkBackground,
     },
   },
+  typography: {
+    fontFamily: 'Roboto',
+  },
 });
+
+export default theme;
