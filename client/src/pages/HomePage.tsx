@@ -1,4 +1,4 @@
-import { Button, Pagination, Stack } from '@mui/material';
+import { Box, Button, Pagination, Stack } from '@mui/material';
 import StreamerForm from '../components/home/StreamerForm';
 import StreamersList from '../components/home/StreamersList';
 import { useEffect, useState } from 'react';
@@ -17,8 +17,7 @@ function HomePage() {
   const [isCreateStreamerModalOpen, setIsCreateStreamerModalOpen] =
     useState(false);
 
-  const { data: streamersData, isLoading: isLoadingStreamers } =
-    useGetStreamers(queryParams);
+  const { data: streamersData } = useGetStreamers(queryParams);
 
   const handleOpenCreateStreamerModal = () => {
     setIsCreateStreamerModalOpen(true);
@@ -30,9 +29,15 @@ function HomePage() {
 
   useEffect(() => {
     socket.connect();
+
     socket.on(SocketResponseMessage.NewVote, () => {
       queryClient.invalidateQueries([apiRoutes.streamers]);
     });
+
+    socket.on(SocketResponseMessage.NewVote, () => {
+      queryClient.invalidateQueries([apiRoutes.streamers]);
+    });
+
     return () => {
       socket.disconnect();
       socket.removeAllListeners();
@@ -41,7 +46,18 @@ function HomePage() {
   }, []);
 
   return (
-    <Stack alignItems="center">
+    <Stack
+      alignItems="center"
+      spacing={2}
+      sx={{
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        pt: 3,
+        // background: theme.palette.background.default,
+      }}
+    >
       <Button
         variant="contained"
         color="primary"
@@ -55,8 +71,11 @@ function HomePage() {
       >
         <StreamerForm onCreateSuccess={handleCloseCreateStreamerModal} />
       </ModalWrapper>
-      <FilterBar setQueryParams={setQueryParams} />
-      <StreamersList streamers={streamersData?.docs} />
+      <Box sx={{}}>
+        <FilterBar setQueryParams={setQueryParams} />
+        <StreamersList streamers={streamersData?.docs} />
+      </Box>
+
       <Pagination
         onChange={(e, page) =>
           setQueryParams((prev) => {
