@@ -1,11 +1,5 @@
-import { Box, MenuItem, Stack, TextField, Typography } from '@mui/material';
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { Box, MenuItem, Stack, TextField } from '@mui/material';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { StreamingPlatform } from '../../services/networking/streamers/types';
 
 const limitOptions = [10, 20, 44, 50, 77, 100];
@@ -60,33 +54,35 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
 
   return (
     <Stack display="flex" width="100%" spacing={2} alignItems="center">
-      <TextField
-        label="Streamer's name"
-        value={searchedStreamer}
-        multiline
-        size="small"
-        onChange={(e) => setSearchedStreamer(e.target.value)}
-      />
-      <TextField
-        label="Platforms"
-        value={chosenPlatforms}
-        size="small"
-        onChange={(e) =>
-          setChosenPlatforms(e.target.value as unknown as StreamingPlatform[])
-        }
-        select
-        SelectProps={{
-          multiple: true,
-          renderValue: (selected) =>
-            (selected as StreamingPlatform[]).join(', '),
-        }}
-      >
-        {Object.values(StreamingPlatform).map((platform) => (
-          <MenuItem key={platform} value={platform}>
-            {platform}
-          </MenuItem>
-        ))}
-      </TextField>
+      <Box display="flex" alignItems="center">
+        <TextField
+          label="Streamer's name"
+          value={searchedStreamer}
+          multiline
+          size="small"
+          onChange={(e) => setSearchedStreamer(e.target.value)}
+        />
+        <TextField
+          label="Platforms"
+          value={chosenPlatforms}
+          size="small"
+          onChange={(e) =>
+            setChosenPlatforms(e.target.value as unknown as StreamingPlatform[])
+          }
+          select
+          SelectProps={{
+            multiple: true,
+            renderValue: (selected) =>
+              (selected as StreamingPlatform[]).join(', '),
+          }}
+        >
+          {Object.values(StreamingPlatform).map((platform) => (
+            <MenuItem key={platform} value={platform}>
+              {platform}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Box>
       <TextField
         value={limit}
         label="Quantity"

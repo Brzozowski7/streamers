@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './pages/HomePage';
 import { Routes } from './services/networking';
+import StreamerPage from './pages/StreamerPage';
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -13,11 +14,13 @@ const App = () => {
       },
     },
   });
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Router>
           <Route path={Routes.home} element={<HomePage />} />
+          <Route path={`${Routes.home}/:id`} element={<StreamerPage />} />
         </Router>
       </BrowserRouter>
       <ToastContainer />

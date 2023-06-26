@@ -43,6 +43,7 @@ export class StreamersService {
     const options = {
       page: payload.page || 1,
       limit: payload.limit || 10,
+      select: 'name upVotes downVotes',
     };
 
     const streamers = await this.streamerRepository.model.paginate(

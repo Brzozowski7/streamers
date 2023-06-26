@@ -27,7 +27,7 @@ function StreamerForm({ onCreateSuccess }: StreamerFormProps) {
       },
       onError: (err) => {
         console.log(err);
-        toast.error('Wystąpił błąd podczas dodawania streamera');
+        toast.error(err.response.data.message);
       },
     });
 
