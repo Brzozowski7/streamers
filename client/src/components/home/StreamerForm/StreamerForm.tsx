@@ -1,17 +1,30 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { Button, MenuItem, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  MenuItem,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { useFormik } from 'formik';
-import { useCreateStreamer } from '../../services/networking/streamers/useCreateStreamer';
-import { apiRoutes } from '../../services/networking/apiRoutes';
+import { useCreateStreamer } from '../../../services/networking/streamers/useCreateStreamer';
+import { apiRoutes } from '../../../services/networking/apiRoutes';
 import { toast } from 'react-toastify';
 import {
   streamerFormInitialValues,
   streamerFormValidationSchema,
-} from '../../constants/validation/streamer-form.schema';
-import { StreamingPlatform } from '../../services/networking/streamers/types';
+} from '../../../constants/validation/streamer-form.schema';
+import { StreamingPlatform } from '../../../services/networking/streamers/types';
 import { useState } from 'react';
-import { useAddStreamerPhoto } from '../../services/networking/streamers/useAddStreamerPhoto';
+import { useAddStreamerPhoto } from '../../../services/networking/streamers/useAddStreamerPhoto';
+import {
+  avatarName,
+  createStreamerBtn,
+  streamerFormInput,
+  uploadAvatarButton,
+} from './styles';
 
 interface StreamerFormProps {
   onCreateSuccess?: () => void;
@@ -67,7 +80,12 @@ function StreamerForm({ onCreateSuccess }: StreamerFormProps) {
   };
 
   return (
-    <form onSubmit={streamerForm.handleSubmit}>
+    <Stack
+      spacing={2}
+      alignItems="center"
+      component="form"
+      onSubmit={streamerForm.handleSubmit}
+    >
       <TextField
         label="Name"
         name="name"
@@ -76,15 +94,16 @@ function StreamerForm({ onCreateSuccess }: StreamerFormProps) {
         fullWidth
         margin="normal"
         onChange={streamerForm.handleChange}
+        sx={streamerFormInput}
         error={!!streamerForm.errors.name}
       />
       <TextField
-        sx={{ width: '100%' }}
         label="Platform"
         value={streamerForm.values.platform}
         onChange={streamerForm.handleChange}
         name="platform"
         select
+        sx={{ ...streamerFormInput, width: '100%' }}
         error={!!streamerForm.errors.platform}
       >
         {Object.values(StreamingPlatform).map((platform) => (
@@ -102,28 +121,35 @@ function StreamerForm({ onCreateSuccess }: StreamerFormProps) {
         onChange={streamerForm.handleChange}
         value={streamerForm.values.description}
         multiline
+        sx={streamerFormInput}
         error={!!streamerForm.errors.description}
       />
-      <Button component="label">
-        Avatar
-        <input
-          type="file"
-          style={{ display: 'none' }}
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-      </Button>
-      <LoadingButton
-        variant="contained"
-        color="primary"
-        fullWidth
-        type="submit"
-        loading={isCreatingStreamer || isAddingPhoto}
-        sx={{ mt: 2 }}
-      >
-        Create
-      </LoadingButton>
-    </form>
+      <Box display="flex" width="100%" gap={1} paddingTop={2}>
+        <Stack display="flex" gap={1} alignItems="center" flex={1}>
+          <Button variant="outlined" component="label" sx={uploadAvatarButton}>
+            <Typography sx={avatarName}>
+              {selectedFile ? selectedFile.name : 'UPLOAD AVATAR'}
+            </Typography>
+            <input
+              type="file"
+              style={{ display: 'none' }}
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+          </Button>
+        </Stack>
+        <LoadingButton
+          variant="contained"
+          color="primary"
+          fullWidth
+          type="submit"
+          sx={createStreamerBtn}
+          loading={isCreatingStreamer || isAddingPhoto}
+        >
+          Create
+        </LoadingButton>
+      </Box>
+    </Stack>
   );
 }
 

@@ -6,7 +6,7 @@ import { objectToURLSearchParams } from '../../utils/objectToURLSearchParams';
 import { Streamer } from './types';
 
 import { PaginatedResponse } from '../types';
-import { IQueryParams } from '../../../components/home/FilterBar';
+import { IQueryParams } from '../../../components/home/FilterBar/FilterBar';
 
 const getByQuery = async (query: IQueryParams) => {
   const data = await apiClientGet<PaginatedResponse<Streamer>>(

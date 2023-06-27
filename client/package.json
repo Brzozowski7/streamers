@@ -1,8 +1,7 @@
 {
-  "name": "spedify-fe",
-  "app": "Spedify",
-  "version": "2.0",
-  "description": "Spedify Omida Logistics",
+  "name": "streamers-fe",
+  "app": "Streamers",
+  "version": "1.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.0",

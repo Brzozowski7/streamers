@@ -1,6 +1,7 @@
-import { Box, MenuItem, Stack, TextField } from '@mui/material';
+import { Container, MenuItem, TextField } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { StreamingPlatform } from '../../services/networking/streamers/types';
+import { StreamingPlatform } from '../../../services/networking/streamers/types';
+import { filterBarInput, filterBarWrapper } from './styles';
 
 const limitOptions = [10, 20, 44, 50, 77, 100];
 
@@ -56,40 +57,38 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
   }, [limit]);
 
   return (
-    <Stack width="100%" spacing={2} alignItems="center">
-      <Box display="flex" alignItems="center" gap={2}>
-        <TextField
-          sx={{ width: 150 }}
-          label="Streamer's name"
-          value={searchedStreamer}
-          size="small"
-          onChange={(e) => setSearchedStreamer(e.target.value)}
-        />
-        <TextField
-          sx={{ width: 150 }}
-          label="Platforms"
-          value={chosenPlatforms}
-          size="small"
-          onChange={(e) =>
-            setChosenPlatforms(e.target.value as unknown as StreamingPlatform[])
-          }
-          select
-          SelectProps={{
-            multiple: true,
-            renderValue: (selected) =>
-              (selected as StreamingPlatform[]).join(', '),
-          }}
-        >
-          {Object.values(StreamingPlatform).map((platform) => (
-            <MenuItem key={platform} value={platform}>
-              {platform}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Box>
+    <Container sx={filterBarWrapper}>
+      <TextField
+        sx={{ ...filterBarInput, width: 150 }}
+        label="Streamer's name"
+        value={searchedStreamer}
+        size="small"
+        onChange={(e) => setSearchedStreamer(e.target.value)}
+      />
+      <TextField
+        sx={{ ...filterBarInput, width: 150 }}
+        label="Platforms"
+        value={chosenPlatforms}
+        size="small"
+        onChange={(e) =>
+          setChosenPlatforms(e.target.value as unknown as StreamingPlatform[])
+        }
+        select
+        SelectProps={{
+          multiple: true,
+          renderValue: (selected) =>
+            (selected as StreamingPlatform[]).join(', '),
+        }}
+      >
+        {Object.values(StreamingPlatform).map((platform) => (
+          <MenuItem key={platform} value={platform}>
+            {platform}
+          </MenuItem>
+        ))}
+      </TextField>
       <TextField
         value={limit}
-        sx={{ width: 75 }}
+        sx={{ ...filterBarInput, width: 75 }}
         label="Quantity"
         onChange={(e) => setLimit(parseInt(e.target.value))}
         select
@@ -100,7 +99,7 @@ function FilterBar({ setQueryParams }: FilterBarProps) {
           </MenuItem>
         ))}
       </TextField>
-    </Stack>
+    </Container>
   );
 }
 

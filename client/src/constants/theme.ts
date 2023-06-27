@@ -1,20 +1,28 @@
 import { createTheme } from '@mui/material/styles';
+import './mui.theme.d.ts';
 import colorPalette from './colorPallete';
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: colorPalette.purple,
+    textColors: {
+      white: colorPalette.white,
+      purple: colorPalette.purple,
+      pink: colorPalette.pink,
     },
-    secondary: {
-      main: colorPalette.white,
+    backgrounds: {
+      darkBlue: colorPalette.darkBlue,
+      blue: colorPalette.blue,
+      purple: colorPalette.purple,
+      darkPurple: colorPalette.darkPurple,
     },
-    background: {
-      default: colorPalette.darkBackground,
+    strokes: {
+      white: colorPalette.white,
     },
   },
   typography: {
-    fontFamily: 'Roboto',
+    allVariants: {
+      fontFamily: 'Roboto',
+    },
   },
 });
 
