@@ -48,16 +48,6 @@ export const bootstrapServer = (
       crossOriginEmbedderPolicy: { policy: 'credentialless' },
       contentSecurityPolicy: {
         useDefaults: true,
-        directives: {
-          defaultSrc: ["'self'"],
-          scriptSrc: [
-            "'self'",
-            "'unsafe-inline'",
-            'https://maps.googleapis.com',
-          ],
-          connectSrc: ["'self'", 'https://maps.googleapis.com'],
-          'img-src': ["'self'", 'https: data:'],
-        },
       },
     }),
   );
