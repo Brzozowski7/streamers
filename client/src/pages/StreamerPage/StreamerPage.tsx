@@ -72,7 +72,7 @@ function StreamerPage() {
           <Box display="flex" alignItems="center" gap={1}>
             <LoadingButton
               sx={voteButton}
-              variant="outlined"
+              variant="contained"
               loading={isVoting}
               disabled={voted}
               onClick={handleLike}

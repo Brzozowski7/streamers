@@ -57,15 +57,27 @@ export const avatar: CSSProperties = {
 };
 
 export const voteButton: SxProps<Theme> = {
-  boxShadow: `inset 0px 0px 8px 4px ${theme.palette.backgrounds.purple}`,
   color: theme.palette.textColors.white,
   '&.MuiButton-outlined': {
     borderColor: theme.palette.common.white,
+    '&:hover': {
+      boxShadow: `inset 0px 0px 8px 4px ${theme.palette.backgrounds.purple}`,
+      borderColor: theme.palette.backgrounds.darkPurple,
+    },
+  },
+  '&.MuiButton-contained': {
+    borderColor: theme.palette.common.white,
+    bgcolor: theme.palette.backgrounds.darkPurple,
+    '&:hover': {
+      boxShadow: `inset 0px 0px 8px 4px ${theme.palette.strokes.white}`,
+      borderColor: theme.palette.strokes.white,
+    },
   },
   ':disabled': {
     opacity: 0.4,
     color: theme.palette.textColors.white,
     backgroundColor: theme.palette.backgrounds.darkBlue,
+    border:0
   },
 };
 
