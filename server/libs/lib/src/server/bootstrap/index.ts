@@ -45,13 +45,16 @@ export const bootstrapServer = (
   // #################
   app.use(
     helmet({
-      crossOriginEmbedderPolicy: { policy: 'credentialless' },
+      crossOriginEmbedderPolicy: false,
       contentSecurityPolicy: {
         useDefaults: true,
+        directives: {
+          'img-src': ["'self'", 'https: data:'],
+        },
       },
     }),
   );
-
+  
   // #############
   // #  Swagger  #
   // #############
