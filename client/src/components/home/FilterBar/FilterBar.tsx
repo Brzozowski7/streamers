@@ -2,8 +2,9 @@ import { Container, MenuItem, TextField } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { StreamingPlatform } from '../../../services/networking/streamers/types';
 import { filterBarInput, filterBarWrapper } from './styles';
+import { limitOptions } from './FilterBar.const';
 
-const limitOptions = [10, 20, 44, 50, 77, 100];
+
 
 export type IQueryParams = {
   page?: number;

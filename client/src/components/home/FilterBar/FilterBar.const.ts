@@ -1,0 +1,1 @@
+export const limitOptions = [10, 20, 44, 50, 77, 100];

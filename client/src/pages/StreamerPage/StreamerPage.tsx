@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import { Stack, Container, Typography, Box } from '@mui/material';
 import useGetStreamerById from '../../services/networking/streamers/useGetStreamerById';
-import LoadingSpinner from '../../components/shared/LoadingSpinner';
+import LoadingSpinner from '../../components/shared/LoadingSpinner/LoadingSpinner';
 import {
   streamerPageWrapper,
   avatarWrapper,

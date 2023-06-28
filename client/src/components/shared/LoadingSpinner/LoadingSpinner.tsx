@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { RotatingLines } from "react-loader-spinner";
 
 interface LoadingSpinnerProps {
@@ -10,7 +11,7 @@ const LoadingSpinner = ({
   width = "20",
 }: LoadingSpinnerProps) => {
   return (
-    <div className="flex justify-center items-center h-full">
+    <Box display="flex" justifyContent="center" alignItems="center">
       <RotatingLines
         width={width}
         strokeColor={color}
@@ -19,7 +20,7 @@ const LoadingSpinner = ({
         animationDuration="1.5"
         ariaLabel="rings-loading"
       />
-    </div>
+    </Box>
   );
 };
 

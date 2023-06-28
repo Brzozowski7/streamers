@@ -5,12 +5,11 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
+import { useQueryClient } from '@tanstack/react-query';
 import StreamersList from '../../components/home/StreamersList/StreamersList';
 import { useEffect, useState } from 'react';
-
 import socket from '../../services/networking/socket/socket';
 import { SocketResponseMessage } from '../../services/networking/socket/socketResponseMessage';
-import { useQueryClient } from '@tanstack/react-query';
 import { apiRoutes } from '../../services/networking/apiRoutes';
 import ModalWrapper from '../../components/shared/ModalWrapper';
 import { useGetStreamers } from '../../services/networking/streamers/useGetStreamers';
