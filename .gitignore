@@ -1,6 +1,7 @@
 # compiled output
 /client/dist
 /client/node_modules
+/client/.vscode
 /server/dist
 /server/node_modules
 
