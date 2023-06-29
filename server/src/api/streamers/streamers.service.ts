@@ -7,12 +7,13 @@ import {
 
 import { SocketGateway } from '../socket/socket.gateway';
 import { PhotoService } from 'src/photo/photo.service';
-import { StreamerRepository } from 'src/mongo/entities/streamer';
+
 import { SearchStreamersDTO } from 'src/api/streamers/dtos/search-streamers.dto';
 import { CreateStreamerDTO } from 'src/api/streamers/dtos/create-streamer.dto';
 import { StreamersQuery } from 'src/types/streamers/streamers-query';
 import { StreamerVoteDTO } from 'src/api/streamers/dtos/streamer-vote.dto';
 import { VoteType } from 'src/types/streamers/vote-type';
+import { StreamerRepository } from 'src/entities/streamer';
 
 @Injectable()
 export class StreamersService {

@@ -1,7 +1,8 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { ReadStream } from "fs";
 import ImageKit from "imagekit";
-import { PhotoRepository } from "src/mongo/entities/photo";
+import { PhotoRepository } from "src/entities/photo";
+
 
 
 @Injectable()
