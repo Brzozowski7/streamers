@@ -48,9 +48,6 @@ export const bootstrapServer = (
       crossOriginEmbedderPolicy: false,
       contentSecurityPolicy: {
         useDefaults: true,
-        directives: {
-          'img-src': ["'self'", 'http: data:'],
-        },
       },
     }),
   );
