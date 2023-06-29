@@ -4,12 +4,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { StreamerRepository } from 'libs/lib/src/mongo/entities/streamer';
-import { CreateStreamerDTO } from 'libs/lib/src/types/streamers/create-streamer.dto';
-import { StreamerVoteDTO } from 'libs/lib/src/types/streamers/streamer-vote.dto';
+import { CreateStreamerDTO } from 'libs/lib/src/dtos/streamers/create-streamer.dto';
+import { StreamerVoteDTO } from 'libs/lib/src/dtos/streamers/streamer-vote.dto';
 import { VoteType } from 'libs/lib/src/types/streamers/vote-type';
 import { SocketGateway } from '../socket/socket.gateway';
 import { PhotoService } from 'libs/lib/src/photo/photo.service';
-import { SearchStreamersDTO } from 'libs/lib/src/types/streamers/search-streamers.dto';
+import { SearchStreamersDTO } from 'libs/lib/src/dtos/streamers/search-streamers.dto';
 import { StreamersQuery } from 'libs/lib/src/types/streamers/streamers-query';
 
 @Injectable()

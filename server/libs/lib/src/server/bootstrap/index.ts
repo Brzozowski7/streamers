@@ -30,10 +30,6 @@ const _commonSetup = (app: INestMicroservice | INestApplication) => {
   );
 };
 
-export const bootstrapMicroservice = (app: INestMicroservice) => {
-  _commonSetup(app);
-};
-
 export const bootstrapServer = (
   app: INestApplication,
   appPortEnvString: string,
@@ -45,7 +41,7 @@ export const bootstrapServer = (
   // #################
   app.use(
     helmet({
-      crossOriginEmbedderPolicy: { policy: 'credentialless' },
+      crossOriginEmbedderPolicy: false,
       contentSecurityPolicy: {
         useDefaults: true,
       },

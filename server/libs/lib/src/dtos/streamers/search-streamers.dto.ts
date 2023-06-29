@@ -1,5 +1,5 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
-import { StreamingPlatform } from './streaming-platform';
+import { StreamingPlatform } from '../../types/streamers/streaming-platform';
 import { ApiProperty } from '@nestjs/swagger';
 import { PaginateRequest } from '../../mongo/interfaces';
 

@@ -9,14 +9,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, COMMON_SERVER_SETTINGS);
 
-  app.useGlobalInterceptors(new LoggerErrorInterceptor());
-
   const port = bootstrapServer(app, 'APP_PORT');
 
   app.useWebSocketAdapter(new SocketIOAdapter(app));
 
   await app.listen(port);
+  
   const logger = app.get(Logger);
+
   logger.log(
     `🚀 [ENV=${process.env.NODE_ENV}] [App] started on port ${port}! 🚀`,
   );
