@@ -1,9 +1,8 @@
 import { Injectable, Logger } from "@nestjs/common";
-
 import { ReadStream } from "fs";
-
 import ImageKit from "imagekit";
-import { PhotoRepository } from "../mongo/entities/photo";
+import { PhotoRepository } from "src/mongo/entities/photo";
+
 
 @Injectable()
 export class PhotoService {
@@ -48,7 +47,7 @@ export class PhotoService {
       return uploadedPhoto;
     } catch (e) {
       this.logger.error(
-        `Couldn't upload photo for Streamer: [${streamerId}], ${JSON.stringify(e)}`
+        `Couldn't upload photo for User: [${streamerId}], ${JSON.stringify(e)}`
       );
       throw e;
     }

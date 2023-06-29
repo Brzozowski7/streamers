@@ -1,5 +1,5 @@
 import { IsEnum, IsString } from "class-validator";
-import { StreamingPlatform } from "../../types/streamers/streaming-platform";
+import { StreamingPlatform } from "../../../types/streamers/streaming-platform";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateStreamerDTO {

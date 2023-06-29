@@ -1,7 +1,8 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { MongoRepository } from '../../mongo.repository';
+
 import { Photo, PhotoDocument } from './photo.schema';
+import { MongoRepository } from 'libs/lib/src/mongo/mongo.repository';
 
 export class PhotoRepository extends MongoRepository<
   Photo,

@@ -10,15 +10,16 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { Streamer } from 'libs/lib/src/mongo/entities/streamer';
-import { CreateStreamerDTO } from 'libs/lib/src/dtos/streamers/create-streamer.dto';
 import { StreamersService } from './streamers.service';
-import { StreamerIdParam } from 'libs/lib/src/types/streamers/streamer-id-param';
-import { StreamerVoteDTO } from 'libs/lib/src/dtos/streamers/streamer-vote.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { SearchStreamersDTO } from 'libs/lib/src/dtos/streamers/search-streamers.dto';
 import { ApiPaginatedResponse } from 'libs/lib/src/decorators/ApiPaginatedResponse.decorator';
-import { Photo } from 'libs/lib/src/mongo/entities/photo';
+import { Streamer } from 'src/mongo/entities/streamer';
+import { Photo } from 'src/mongo/entities/photo';
+import { CreateStreamerDTO } from 'src/api/streamers/dtos/create-streamer.dto';
+import { SearchStreamersDTO } from 'src/api/streamers/dtos/search-streamers.dto';
+import { StreamerIdParam } from 'src/types/streamers/streamer-id-param';
+import { StreamerVoteDTO } from 'src/api/streamers/dtos/streamer-vote.dto';
+
 
 @ApiTags('/streamers')
 @Controller()

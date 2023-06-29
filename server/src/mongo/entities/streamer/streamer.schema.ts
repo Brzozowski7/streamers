@@ -1,8 +1,9 @@
 import { SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema } from 'mongoose';
-import { CommonSchema, OptionalProp, RequiredProp } from '../../decorators';
-import { BaseSchema } from '../../common-schemas';
+
 import { Photo, photoAutopopulate } from '../photo';
+import { BaseSchema } from 'libs/lib/src/mongo/common-schemas';
+import { CommonSchema, OptionalProp, RequiredProp } from 'libs/lib/src/mongo/decorators';
 
 export type StreamerDocument = Streamer & Document;
 
