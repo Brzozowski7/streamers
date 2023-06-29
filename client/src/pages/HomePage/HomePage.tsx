@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useQueryClient } from '@tanstack/react-query';
-import StreamersList from '../../components/home/StreamersList/StreamersList';
+import StreamersList from '../../components/home/StreamersList';
 import { useEffect, useState } from 'react';
 import socket from '../../services/networking/socket/socket';
 import { SocketResponseMessage } from '../../services/networking/socket/socketResponseMessage';
@@ -24,7 +24,7 @@ import {
 import FilterBar, {
   IQueryParams,
 } from '../../components/home/FilterBar/FilterBar';
-import StreamerForm from '../../components/home/StreamerForm/StreamerForm';
+import StreamerForm from '../../components/home/StreamerForm';
 
 function HomePage() {
   const queryClient = useQueryClient();

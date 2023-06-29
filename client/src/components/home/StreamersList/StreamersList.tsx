@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import StreamersListItem from '../StreamerListItem/StreamersListItem';
+import StreamersListItem from '../StreamerListItem';
 import { Streamer } from '../../../services/networking/streamers/types';
 import { emptyListText, streamersListWrapper } from './styles';
 
