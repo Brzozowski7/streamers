@@ -3,7 +3,7 @@ import { StreamersController } from './streamers.controller';
 import { StreamersService } from './streamers.service';
 
 import { SocketModule } from '../socket/socket.module';
-import { PhotoModule } from 'libs/lib/src/photo/photo.module';
+import { PhotoModule } from 'src/photo/photo.module';
 import { StreamerSchemaModule } from 'src/mongo/entities/streamer/streamer-schema.module';
 
 @Module({

@@ -6,7 +6,7 @@ import {
 
 
 import { SocketGateway } from '../socket/socket.gateway';
-import { PhotoService } from 'libs/lib/src/photo/photo.service';
+import { PhotoService } from 'src/photo/photo.service';
 import { StreamerRepository } from 'src/mongo/entities/streamer';
 import { SearchStreamersDTO } from 'src/api/streamers/dtos/search-streamers.dto';
 import { CreateStreamerDTO } from 'src/api/streamers/dtos/create-streamer.dto';
