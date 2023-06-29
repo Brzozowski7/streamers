@@ -6,7 +6,7 @@ import { SocketModule } from '../socket/socket.module';
 import { PhotoModule } from 'libs/lib/src/photo/photo.module';
 
 @Module({
-  imports: [StreamerSchemaModule, SocketModule, PhotoModule],
+  imports: [StreamerSchemaModule, PhotoModule, SocketModule],
   controllers: [StreamersController],
   providers: [StreamersService],
 })

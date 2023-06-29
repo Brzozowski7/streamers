@@ -48,7 +48,7 @@ export class PhotoService {
       return uploadedPhoto;
     } catch (e) {
       this.logger.error(
-        `Couldn't upload photo for User: [${streamerId}], ${JSON.stringify(e)}`
+        `Couldn't upload photo for Streamer: [${streamerId}], ${JSON.stringify(e)}`
       );
       throw e;
     }

@@ -30,8 +30,6 @@
     "@nestjs/serve-static": "^3.0.1",
     "@nestjs/swagger": "^6.3.0",
     "@nestjs/websockets": "^9.3.12",
-    "@typegoose/typegoose": "^11.0.0",
-    "@types/mongoose-aggregate-paginate-v2": "^1.0.9",
     "@types/multer": "^1.4.7",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",

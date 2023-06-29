@@ -1,5 +1,6 @@
 import { NestApplicationOptions } from '@nestjs/common';
 import dotenv from 'dotenv';
+import fs from "fs"
 dotenv.config();
 import fs from 'fs';
 
