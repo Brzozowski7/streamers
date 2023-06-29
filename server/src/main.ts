@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { bootstrapServer } from 'libs/lib/src/server/bootstrap';
 import COMMON_SERVER_SETTINGS from 'libs/lib/src/server/settings';
-import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
+import { Logger } from 'nestjs-pino';
 import { SocketIOAdapter } from './api/socket/socket-io.adapter';
 
 import { AppModule } from './app.module';
