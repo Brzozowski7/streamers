@@ -1,6 +1,7 @@
 # Streamers
 
-You can test the application by visiting krzysztofbrzozowski.online. The application is hosted on AWS.
+You can test the application by visiting [krzysztofbrzozowski.online](http://krzysztofbrzozowski.online). The application is hosted on AWS.
+
 
 
 Features:
