@@ -1,5 +1,9 @@
 # Streamers
 
+You can test the application by visiting [krzysztofbrzozowski.online](http://krzysztofbrzozowski.online). The application is hosted on AWS.
+
+
+
 Features:
 - Add streamers: The application allows you to add new streamers to the app. You can provide details such as the streamer's name, platform, description and image.
 - Vote for streamers: Users can vote for their favorite streamers by giving them a thumbs up or thumbs down.
