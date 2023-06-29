@@ -1,7 +1,8 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { MongoRepository } from '../../mongo.repository';
+
 import { StreamerDocument, Streamer } from './streamer.schema';
 import { PaginateModel } from 'mongoose';
+import { MongoRepository } from 'libs/lib/src/mongo/mongo.repository';
 
 export class StreamerRepository extends MongoRepository<
   Streamer,

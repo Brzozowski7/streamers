@@ -49,7 +49,7 @@ function HomePage() {
       queryClient.invalidateQueries([apiRoutes.streamers]);
     });
 
-    socket.on(SocketResponseMessage.NewVote, () => {
+    socket.on(SocketResponseMessage.NewStreamer, () => {
       queryClient.invalidateQueries([apiRoutes.streamers]);
     });
 
