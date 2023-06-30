@@ -16,7 +16,7 @@ import { ApiPaginatedResponse } from 'libs/lib/src/decorators/ApiPaginatedRespon
 
 import { CreateStreamerDTO } from 'src/api/streamers/dtos/create-streamer.dto';
 import { SearchStreamersDTO } from 'src/api/streamers/dtos/search-streamers.dto';
-import { StreamerIdParam } from 'src/types/streamers/streamer-id-param';
+import { StreamerIdParam } from 'src/api/streamers/dtos/streamer-id-param';
 import { StreamerVoteDTO } from 'src/api/streamers/dtos/streamer-vote.dto';
 import { Streamer } from 'src/entities/streamer';
 import { Photo } from 'src/entities/photo';
