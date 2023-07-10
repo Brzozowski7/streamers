@@ -121,7 +121,7 @@ describe('StreamersService', () => {
       const query = {
         name: { $regex: payload.streamer, $options: 'i' },
         platform: {
-          $in: [StreamingPlatform.TWITCH, StreamingPlatform.YOUTUBE],
+          $in: payload.platforms,
         },
       };
       const options = {
