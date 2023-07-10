@@ -5,8 +5,9 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { SocketServerMessage } from 'src/api/socket/messages';
+
 import { Server, Socket } from 'socket.io';
+import { SocketServerMessage } from './messages';
 
 @UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
 @WebSocketGateway({

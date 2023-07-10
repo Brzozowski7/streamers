@@ -6,14 +6,14 @@ import {
 
 
 import { SocketGateway } from '../socket/socket.gateway';
-import { PhotoService } from 'src/photo/photo.service';
-
-import { SearchStreamersDTO } from 'src/api/streamers/dtos/search-streamers.dto';
-import { CreateStreamerDTO } from 'src/api/streamers/dtos/create-streamer.dto';
-import { StreamersQuery } from 'src/types/streamers/streamers-query';
-import { StreamerVoteDTO } from 'src/api/streamers/dtos/streamer-vote.dto';
-import { VoteType } from 'src/types/streamers/vote-type';
+import { CreateStreamerDTO } from './dtos/create-streamer.dto';
 import { StreamerRepository } from 'src/entities/streamer';
+import { PhotoService } from 'src/photo/photo.service';
+import { SearchStreamersDTO } from './dtos/search-streamers.dto';
+import { StreamersQuery } from 'src/types/streamers/streamers-query';
+import { StreamerVoteDTO } from './dtos/streamer-vote.dto';
+import { VoteType } from 'src/types/streamers/vote-type';
+
 
 @Injectable()
 export class StreamersService {
@@ -85,7 +85,6 @@ export class StreamersService {
   }
 
   async addStreamerPhoto(photoData: Express.Multer.File, streamerId: string) {
-    console.log(photoData);
     const foundStreamer = await this.streamerRepository.findById(streamerId);
 
     if (!foundStreamer) throw new NotFoundException('Streamer not found');
@@ -94,7 +93,7 @@ export class StreamersService {
 
     const streamerPhoto = await this.photoService.upload(
       Buffer.from(photo),
-      'carPhoto',
+      'streamerPhoto',
       streamerId,
       `streamers/${streamerId}`,
     );
