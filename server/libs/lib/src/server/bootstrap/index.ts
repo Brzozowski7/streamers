@@ -17,17 +17,6 @@ const _commonSetup = (app: INestMicroservice | INestApplication) => {
   // #  Logger  #
   // #################
   app.useLogger(app.get(Logger));
-  app.useGlobalInterceptors(new LoggerErrorInterceptor());
-
-  // #########
-  // # PIPES #
-  // #########
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true,
-    }),
-  );
 };
 
 export const bootstrapServer = (

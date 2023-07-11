@@ -4,7 +4,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-
 import { SocketGateway } from '../socket/socket.gateway';
 import { CreateStreamerDTO } from './dtos/create-streamer.dto';
 import { StreamerRepository } from 'src/entities/streamer';
@@ -13,7 +12,6 @@ import { SearchStreamersDTO } from './dtos/search-streamers.dto';
 import { StreamersQuery } from 'src/types/streamers/streamers-query';
 import { StreamerVoteDTO } from './dtos/streamer-vote.dto';
 import { VoteType } from 'src/types/streamers/vote-type';
-
 
 @Injectable()
 export class StreamersService {

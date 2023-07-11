@@ -3,8 +3,6 @@ import { BaseSchema } from 'libs/lib/src/mongo/common-schemas';
 import { CommonSchema, RequiredProp } from 'libs/lib/src/mongo/decorators';
 import { Document } from 'mongoose';
 
-
-
 export type PhotoDocument = Photo & Document;
 
 @CommonSchema()

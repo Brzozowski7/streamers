@@ -59,13 +59,13 @@ describe('StreamersService', () => {
   });
 
   describe('createStreamer', () => {
-    it('should create a new streamer and return the created streamer', async () => {
-      const payload: CreateStreamerDTO = {
-        name: 'Streamer 1',
-        platform: StreamingPlatform.TWITCH,
-        description: 'Test description',
-      };
+    const payload: CreateStreamerDTO = {
+      name: 'Streamer 1',
+      platform: StreamingPlatform.TWITCH,
+      description: 'Test description',
+    };
 
+    it('should create a new streamer and return the created streamer', async () => {
       const createdStreamer = { _id: '1', ...payload };
 
       jest
@@ -87,12 +87,6 @@ describe('StreamersService', () => {
     });
 
     it('should throw a BadRequestException if the streamer already exists', async () => {
-      const payload: CreateStreamerDTO = {
-        name: 'Existing Streamer',
-        platform: StreamingPlatform.TWITCH,
-        description: 'Test description',
-      };
-
       jest.spyOn(streamerRepository, 'findOne').mockResolvedValueOnce({
         _id: '1',
         name: payload.name,

@@ -1,0 +1,17 @@
+{
+    "moduleFileExtensions": ["js", "json", "ts"],
+    "rootDir": "../",
+    "testEnvironment": "node",
+    "testRegex": ".e2e-spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "moduleNameMapper": {
+        "^libs/lib/src/logger$": "<rootDir>/libs/lib/src/logger",
+        "^libs/lib/src/mongo/module$": "<rootDir>/libs/lib/src/mongo/module",
+        "src/entities/photo/photo-schema.module": "<rootDir>/src/entities/photo/photo-schema.module",
+        "^libs/([^/]*)/(.*)": "<rootDir>/libs/lib/src",
+        "^libs/(.*)": "<rootDir>/libs/lib/src",
+        "^libs/lib/src/mongo/common-schemas":"<rootDir>/libs/lib/src/mongo/common-schemas"
+    }
+  }
