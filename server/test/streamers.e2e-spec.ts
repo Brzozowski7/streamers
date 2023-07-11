@@ -3,11 +3,12 @@ import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { StreamingPlatform } from 'src/types/streamers/streaming-platform';
-import { Streamer, StreamerDocument } from 'src/entities/streamer';
+import { Streamer, StreamerRepository } from 'src/mongo/entities/streamer';
+import { VoteType } from 'src/types/streamers/vote-type';
 
 describe('StreamersController (e2e)', () => {
   let app: INestApplication;
-
+  let moduleFixture: TestingModule;
   let testStreamer: Streamer;
 
   const payload = {
@@ -16,10 +17,10 @@ describe('StreamersController (e2e)', () => {
     description: 'test streamer',
   };
 
-  const nonExistentId = 'non-existent-id';
+  const nonExistentId = '64ad46ce1e360e0cf38d0000';
 
   beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
@@ -28,13 +29,15 @@ describe('StreamersController (e2e)', () => {
   });
 
   afterAll(async () => {
-    await app.close();
+    await moduleFixture
+      .get(StreamerRepository)
+      .findOneAndDelete({ _id: testStreamer._id });
   });
 
   describe('POST /streamers', () => {
     it('should create a new streamer', async () => {
       const response = await request(app.getHttpServer())
-        .post('/streamers')
+        .post('/api/streamers')
         .send(payload)
         .expect(201);
 
@@ -45,7 +48,7 @@ describe('StreamersController (e2e)', () => {
 
     it('should return 400 if streamer already exists', async () => {
       const response = await request(app.getHttpServer())
-        .post('/streamers')
+        .post('/api/streamers')
         .send(payload)
         .expect(400);
 
@@ -57,7 +60,7 @@ describe('StreamersController (e2e)', () => {
   describe('GET /streamers', () => {
     it('should retrieve a list of streamers based on search criteria', async () => {
       const response = await request(app.getHttpServer())
-        .get('/streamers')
+        .get('/api/streamers')
         .query({
           streamer: 'search term',
           platforms: [StreamingPlatform.TIKTOK, StreamingPlatform.RUMBLE],
@@ -75,7 +78,7 @@ describe('StreamersController (e2e)', () => {
   describe('GET /streamers/:id', () => {
     it('should retrieve a specific streamer by ID', async () => {
       const response = await request(app.getHttpServer())
-        .get('/streamers/:id')
+        .get(`/api/streamers/${testStreamer._id}`)
         .expect(200);
 
       const streamer = response.body;
@@ -84,7 +87,7 @@ describe('StreamersController (e2e)', () => {
 
     it('should return 404 if streamer not found', async () => {
       const response = await request(app.getHttpServer())
-        .get(`/streamers/${nonExistentId}`)
+        .get(`/api/streamers/${nonExistentId}`)
         .expect(404);
 
       const errorResponse = response.body;
@@ -92,11 +95,11 @@ describe('StreamersController (e2e)', () => {
     });
   });
 
-  describe('POST /streamers/:id/vote', () => {
+  describe('PUT /streamers/:id/vote', () => {
     it('should increase the vote count for a streamer', async () => {
       const response = await request(app.getHttpServer())
-        .post(`/streamers/${testStreamer._id}/vote`)
-        .send({ vote: 'up' })
+        .put(`/api/streamers/${testStreamer._id}/vote`)
+        .send({ vote: VoteType.UP })
         .expect(200);
 
       const updatedStreamer = response.body;
@@ -105,8 +108,8 @@ describe('StreamersController (e2e)', () => {
 
     it('should return 404 if streamer not found', async () => {
       const response = await request(app.getHttpServer())
-        .post(`/streamers/${nonExistentId}/vote`)
-        .send({ vote: 'up' })
+        .put(`/api/streamers/${nonExistentId}/vote`)
+        .send({ vote: VoteType.UP })
         .expect(404);
 
       const errorResponse = response.body;

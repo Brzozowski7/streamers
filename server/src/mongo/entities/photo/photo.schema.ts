@@ -1,7 +1,8 @@
 import { SchemaFactory } from '@nestjs/mongoose';
-import { BaseSchema } from 'libs/lib/src/mongo/common-schemas';
-import { CommonSchema, RequiredProp } from 'libs/lib/src/mongo/decorators';
+
 import { Document } from 'mongoose';
+import { BaseSchema } from 'src/mongo/common-schemas';
+import { CommonSchema, RequiredProp } from 'src/mongo/decorators';
 
 export type PhotoDocument = Photo & Document;
 

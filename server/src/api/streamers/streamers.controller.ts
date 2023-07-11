@@ -12,15 +12,13 @@ import {
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { StreamersService } from './streamers.service';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiPaginatedResponse } from 'libs/lib/src/decorators/ApiPaginatedResponse.decorator';
-
-import { CreateStreamerDTO } from 'src/api/streamers/dtos/create-streamer.dto';
-import { SearchStreamersDTO } from 'src/api/streamers/dtos/search-streamers.dto';
-import { StreamerIdParam } from 'src/api/streamers/dtos/streamer-id-param';
-import { StreamerVoteDTO } from 'src/api/streamers/dtos/streamer-vote.dto';
-import { Streamer } from 'src/entities/streamer';
-import { Photo } from 'src/entities/photo';
-
+import { Streamer } from 'src/mongo/entities/streamer';
+import { CreateStreamerDTO } from './dtos/create-streamer.dto';
+import { ApiPaginatedResponse } from 'src/decorators/ApiPaginatedResponse.decorator';
+import { SearchStreamersDTO } from './dtos/search-streamers.dto';
+import { StreamerIdParam } from './dtos/streamer-id-param';
+import { StreamerVoteDTO } from './dtos/streamer-vote.dto';
+import { Photo } from 'src/mongo/entities/photo';
 
 @ApiTags('/streamers')
 @Controller()

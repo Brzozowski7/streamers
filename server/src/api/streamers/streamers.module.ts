@@ -4,8 +4,7 @@ import { StreamersService } from './streamers.service';
 
 import { SocketModule } from '../socket/socket.module';
 import { PhotoModule } from 'src/photo/photo.module';
-import { StreamerSchemaModule } from 'src/entities/streamer/streamer-schema.module';
-
+import { StreamerSchemaModule } from 'src/mongo/entities/streamer/streamer-schema.module';
 
 @Module({
   imports: [StreamerSchemaModule, PhotoModule, SocketModule],

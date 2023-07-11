@@ -1,9 +1,5 @@
-import {
-  INestApplication,
-  INestMicroservice,
-  ValidationPipe,
-} from '@nestjs/common';
-import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
+import { INestApplication, INestMicroservice } from '@nestjs/common';
+import { Logger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
 import {
   DocumentBuilder,

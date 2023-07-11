@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { StreamersService } from './streamers.service';
-import { StreamerDocument, StreamerRepository } from 'src/entities/streamer';
+
 import { SocketGateway } from '../socket/socket.gateway';
 import { PhotoService } from 'src/photo/photo.service';
 import { CreateStreamerDTO } from 'src/api/streamers/dtos/create-streamer.dto';
@@ -10,6 +10,7 @@ import { StreamerVoteDTO } from 'src/api/streamers/dtos/streamer-vote.dto';
 import { VoteType } from 'src/types/streamers/vote-type';
 import { StreamingPlatform } from 'src/types/streamers/streaming-platform';
 import { PaginateResult } from 'mongoose';
+import { StreamerDocument, StreamerRepository } from 'src/mongo/entities/streamer';
 
 describe('StreamersService', () => {
   let service: StreamersService;

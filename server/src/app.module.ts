@@ -1,13 +1,13 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import CustomAppLogger from 'libs/lib/src/logger';
-import { OwnMongooseModule } from 'libs/lib/src/mongo/module';
 import { ApiModule } from './api/api.module';
 import { OwnConfigModule } from './config/config.module';
 import { RoutesModule } from './routes/routes.module';
 import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { LoggerErrorInterceptor } from 'nestjs-pino';
+import { OwnMongooseModule } from './mongo/module';
+import CustomAppLogger from './logger';
 
 @Module({
   imports: [

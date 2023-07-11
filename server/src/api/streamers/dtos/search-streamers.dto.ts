@@ -1,8 +1,7 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { StreamingPlatform } from '../../../types/streamers/streaming-platform';
 import { ApiProperty } from '@nestjs/swagger';
-import { PaginateRequest } from 'libs/lib/src/mongo/interfaces';
-
+import { PaginateRequest } from 'src/mongo/interfaces';
 
 export class SearchStreamersDTO extends PaginateRequest {
   @ApiProperty({ type: String })

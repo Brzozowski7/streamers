@@ -3,14 +3,13 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-
 import { SocketGateway } from '../socket/socket.gateway';
 import { CreateStreamerDTO } from './dtos/create-streamer.dto';
-import { StreamerRepository } from 'src/entities/streamer';
-import { PhotoService } from 'src/photo/photo.service';
 import { SearchStreamersDTO } from './dtos/search-streamers.dto';
-import { StreamersQuery } from 'src/types/streamers/streamers-query';
 import { StreamerVoteDTO } from './dtos/streamer-vote.dto';
+import { StreamerRepository } from 'src/mongo/entities/streamer';
+import { PhotoService } from 'src/photo/photo.service';
+import { StreamersQuery } from 'src/types/streamers/streamers-query';
 import { VoteType } from 'src/types/streamers/vote-type';
 
 @Injectable()
